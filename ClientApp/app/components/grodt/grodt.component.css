@@ -1,0 +1,19 @@
+.table-borderless td,
+.table-borderless th {
+    border: 0;
+}
+a {
+    color:inherit;
+    text-decoration: none;
+}
+a:hover { 
+    color: red;
+}
+.table-topperformers
+{
+  position:absolute;
+  top: 0;
+  right: 100px;
+  padding: 8px;
+  width: fit-content
+}

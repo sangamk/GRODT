@@ -1,0 +1,46 @@
+﻿<div>   
+ <p *ngIf="!tableData"><em>Loading...</em></p>
+
+    <table class='table table-borderless' *ngIf="tableData">
+        <thead [ngStyle]="{'color':'white', position: sticky}">
+            <tr>
+                <th>Name</th>
+                <th>Price difference</th>
+                <th>Volume difference</th>
+                <th>Last price</th>
+                <th>Points</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let cs of tableData" >
+            <tr [ngStyle]="{'color':'#F50057'}"><td>UPDATE: {{cs.timeStamp}}</td></tr>
+            <tr *ngFor="let coinStat of cs.coinStats" [ngStyle]="coinStyle(coinStat.points)">
+                <td ><a href="https://bittrex.com/Market/Index?MarketName={{coinStat.coin.marketName}}">{{ coinStat.coin.marketName}}</a></td>
+                <td>{{ coinStat.priceIncrease}}%</td>
+                <td>{{ coinStat.volumeIncrease}}%</td>
+                <td>{{ coinStat.coin.last}}</td>
+                <td>{{ coinStat.points }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class='table table-borderless table-topperformers' *ngIf="tableData">
+        <thead [ngStyle]="{'color':'white', position: sticky}">
+            <tr>
+                <th>Name</th>
+                <th>Points</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let coin of topPerformers" [ngStyle]="coinStyle(coin.points)">
+                <td ><a href="https://bittrex.com/Market/Index?MarketName={{coin.marketName}}">{{coin.marketName}}</a></td>
+                <td>{{ coin.points }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- <div *ngFor="let viewData of tableData">
+        <div [ngStyle]="{'color':'red'}">UPDATE: {{viewData.timeStamp}}</div>
+        <div *ngFor="let coinStat of viewData.coinStats" [ngStyle]="coinStyle(coinStat.points)">
+            {{coinStat.coin.marketName}} :: PRICE:: {{coinStat.priceIncrease}}% VOLUME:: {{coinStat.volumeIncrease}}% Last price:: {{coinStat.coin.last}} 
+        </div>
+      </div> -->
+</div>
